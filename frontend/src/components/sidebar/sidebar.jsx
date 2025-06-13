@@ -53,7 +53,7 @@ export default function Sidebar() {
 										className="inline-block p-4 px-0 mr-0 text-sm font-bold text-left uppercase md:block md:pb-2 text-blueGray-600 whitespace-nowrap"
 										to="/"
 									>
-										BloodBridge
+										BloodBank
 									</Link>
 								</div>
 								<div className="flex justify-end w-6/12">
