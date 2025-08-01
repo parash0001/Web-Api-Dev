@@ -10,7 +10,7 @@ export const createAppointment = async (req, res) => {
             bloodType,
             appointmentDate,
             location,
-            userId // optional, from admin side
+            userId 
         } = req.body;
 
         const user = userId || req.user?.id || null;
@@ -30,7 +30,7 @@ export const createAppointment = async (req, res) => {
                 { user: user },
                 { email, phoneNumber }
             ],
-            appointmentDate: { $gte: new Date() } // future appointment
+            appointmentDate: { $gte: new Date() } 
         });
 
         if (existing) {
