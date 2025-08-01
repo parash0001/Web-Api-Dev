@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./index.js"
+    "start": "nodemon ./index.js",
+    "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "Parash Mainali",
   "license": "ISC",
-  "type": "module",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.2",
@@ -18,9 +18,15 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.525.0",
     "mongoose": "^8.15.1",
     "multer": "^2.0.1",
     "nodemailer": "^7.0.3",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "otp-generator": "^4.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.6.4",
+    "supertest": "^7.1.3"
   }
 }

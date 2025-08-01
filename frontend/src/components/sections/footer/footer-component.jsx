@@ -36,16 +36,16 @@ const FooterComponent = () => {
 
 	const contactLinks = [
 		{
-			title: "(+977)-304-050-9060",
-			link: "tel:+9773040509060",
+			title: "+977 986-2576249",
+			link: "tel:+9779862576249",
 		},
 		{
-			title: "help@bloodbank.com",
-			link: "mailto:help@bloodbank.com",
+			title: "help@bloodbridge.com",
+			link: "mailto:help@bloodbridge.com",
 		},
 		{
-			title: "Kathmandu, Nepal",
-			link: "https://goo.gl/maps/QCLpYP3yyUqdT8HA7",
+			title: "Dillibajaar, Kathmandu, Nepal",
+			link: "https://www.google.com/maps/place/Softwarica+College+of+IT+and+E-Commerce/@27.7089603,85.3261328,13z/data=!4m6!3m5!1s0x39eb190a74aa1f23:0x74ebef82ad0e5c15!8m2!3d27.7061384!4d85.3299792!16s%2Fg%2F12hvnfc2d?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D",
 		},
 		{
 			title: "Open 24/7",
@@ -103,7 +103,7 @@ const FooterComponent = () => {
 				</div>
 				<div className="footer-col fourth-col text-center mt-10 border-t-[1px] border-off_white/[.2] pt-6">
 					<h3 className="not-italic text-center font-regular text-[18px] leading-[34px] text-[#D9D9D9] ">
-						©️ 2023 BloodBank - Website design by{" "}
+						©️ 2023 BloodBridge - Website design by{" "}
 						<a
 							href="https://linkedin.com/in/moazamdev"
 							className="underline"

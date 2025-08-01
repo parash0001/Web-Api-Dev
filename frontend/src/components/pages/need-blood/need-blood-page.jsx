@@ -11,45 +11,55 @@ import FooterComponent from "../../sections/footer/footer-component";
 
 import Axios from "axios";
 import newUsersInsertRequest from "../../utility-functions/new-users-insert-request";
+import { Toaster } from "react-hot-toast";
 
 const NeedBloodPage = () => {
 	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		phone: "",
-		bloodType: "",
-		message: "",
-	});
+  bloodType: "",
+  quantity: "",
+  urgency: "",
+  phoneNumber: "",
+  issueDescription: "",
+  location: "",
+});
+
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
+		  e.preventDefault();
 
-		console.log(formData);
+  const token = sessionStorage.getItem("token"); 
+  console.log(token)
 
-		Axios.post("http://localhost:3001/create-need-blood", {
-			name: formData.name,
-			email: formData.email,
-			phone: formData.phone,
-			bloodType: formData.bloodType,
-			message: formData.message,
-		})
-			.then((response) => {
-				console.log("success");
-				console.log(response.data);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+  const payload = {
+    bloodType: formData.bloodType,
+    quantity: formData.quantity,
+    urgency: formData.urgency,
+    phoneNumber: formData.phoneNumber,
+    issueDescription: formData.issueDescription,
+    location: formData.location,
+  };
 
-		newUsersInsertRequest(formData, "need-blood");
+  Axios.post("http://localhost:5000/api/requests/", payload, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => {
+      console.log("Blood request success:", response.data);
+      newUsersInsertRequest(payload, "need-blood");
 
-		setFormData({
-			name: "",
-			email: "",
-			phone: "",
-			bloodType: "",
-			message: "",
-		});
+      setFormData({
+        bloodType: "",
+        quantity: "",
+        urgency: "",
+        phoneNumber: "",
+        issueDescription: "",
+        location: "",
+      });
+    })
+    .catch((error) => {
+      console.error("Error submitting request:", error.response?.data || error);
+    });
 	};
 
 	const NeedBloodPageDetails = {
@@ -153,14 +163,165 @@ const NeedBloodPage = () => {
 			<HeaderComponent />
 
 			<HeroComponent {...NeedBloodPageDetails.hero} />
-			<FormComponent
+			{/* <FormComponent
 				fields={fields}
 				heading={"Request for emergency blood"}
 				buttonText={"Request blood"}
 				handleSubmit={handleSubmit}
 				formData={formData}
 				setFormData={setFormData}
-			/>
+			/> */}
+<section className="py-10 px-4 max-w-2xl mx-auto">
+  <h2 className="text-2xl font-semibold mb-6 text-center">
+    Request for Emergency Blood
+  </h2>
+  <form
+   onSubmit={(e) => {
+  e.preventDefault();
+
+  const token = sessionStorage.getItem("token"); // ✅ Get token from sessionStorage
+
+  const payload = {
+    bloodType: formData.bloodType,
+    quantity: formData.quantity,
+    urgency: formData.urgency,
+    phoneNumber: formData.phoneNumber,
+    issueDescription: formData.issueDescription,
+    location: formData.location,
+  };
+
+  Axios.post("http://localhost:5000/api/requests/", payload, {
+    headers: {
+      Authorization: `Bearer ${token}`, // ✅ Attach Bearer token here
+    },
+  })
+    .then((response) => {
+      console.log("Blood request success:", response.data);
+      newUsersInsertRequest(payload, "need-blood");
+
+      setFormData({
+        bloodType: "",
+        quantity: "",
+        urgency: "",
+        phoneNumber: "",
+        issueDescription: "",
+        location: "",
+      });
+    })
+    .catch((error) => {
+      console.error("Error submitting request:", error.response?.data || error);
+    });
+}}
+
+    className="space-y-6 bg-white p-6 rounded-md shadow-md"
+  >
+    {/* Blood Type */}
+    <div>
+      <label className="block mb-1 font-medium">Blood Type</label>
+      <select
+        value={formData.bloodType}
+        onChange={(e) =>
+          setFormData({ ...formData, bloodType: e.target.value })
+        }
+        required
+        className="w-full p-2 border border-gray-300 rounded"
+      >
+        <option value="">Select Blood Type</option>
+        {["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"].map((type) => (
+          <option key={type} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    {/* Quantity */}
+    <div>
+      <label className="block mb-1 font-medium">Quantity (units)</label>
+      <input
+        type="number"
+        value={formData.quantity}
+        onChange={(e) =>
+          setFormData({ ...formData, quantity: e.target.value })
+        }
+        required
+        className="w-full p-2 border border-gray-300 rounded"
+        placeholder="Enter required units"
+      />
+    </div>
+
+    {/* Urgency */}
+    <div>
+      <label className="block mb-1 font-medium">Urgency Level</label>
+      <select
+        value={formData.urgency}
+        onChange={(e) =>
+          setFormData({ ...formData, urgency: e.target.value })
+        }
+        required
+        className="w-full p-2 border border-gray-300 rounded"
+      >
+        <option value="">Select Urgency</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    {/* Phone Number */}
+    <div>
+      <label className="block mb-1 font-medium">Phone Number</label>
+      <input
+        type="tel"
+        value={formData.phoneNumber}
+        onChange={(e) =>
+          setFormData({ ...formData, phoneNumber: e.target.value })
+        }
+        required
+        className="w-full p-2 border border-gray-300 rounded"
+        placeholder="Enter phone number"
+      />
+    </div>
+
+    {/* Issue Description */}
+    <div>
+      <label className="block mb-1 font-medium">Issue Description</label>
+      <textarea
+        value={formData.issueDescription}
+        onChange={(e) =>
+          setFormData({ ...formData, issueDescription: e.target.value })
+        }
+        required
+        className="w-full p-2 border border-gray-300 rounded"
+        placeholder="Describe your issue"
+      />
+    </div>
+
+    {/* Location */}
+    <div>
+      <label className="block mb-1 font-medium">Location</label>
+      <input
+        type="text"
+        value={formData.location}
+        onChange={(e) =>
+          setFormData({ ...formData, location: e.target.value })
+        }
+        required
+        className="w-full p-2 border border-gray-300 rounded"
+        placeholder="Enter your location"
+      />
+    </div>
+
+    <button
+      type="submit"
+      className="w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition"
+    >
+      Request Blood
+    </button>
+  </form>
+</section>
+
+			
 			<QuoteComponent {...NeedBloodPageDetails.quote} />
 			<SearchBloodStockComponent {...NeedBloodPageDetails.bloodStock} />
 			<ThreeStepProcessComponent

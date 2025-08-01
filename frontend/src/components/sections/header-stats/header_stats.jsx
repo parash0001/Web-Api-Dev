@@ -5,7 +5,7 @@ import React from "react";
 // import CardStats from "components/Cards/CardStats.js";
 
 export default function HeaderStats({
-	heading = "Welcome to BloodBank",
+	heading = "Welcome to BloodBridge",
 	subheading = "Admin Dashboard",
 }) {
 	return (

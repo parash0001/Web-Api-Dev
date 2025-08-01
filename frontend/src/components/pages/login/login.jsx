@@ -4,9 +4,11 @@ import axios from "axios";
 import { Heart, Droplets, Eye, EyeOff } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../AuthContext";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -43,12 +45,9 @@ export default function LoginPage() {
       const { message, token, user } = response.data;
 
       if (token && user?.id) {
-        // Save to sessionStorage
-        sessionStorage.setItem("token", token);
-        sessionStorage.setItem("userId", user.id);
-        sessionStorage.setItem("expiresAt", Date.now() + 86400000); // 1 day
+        login({ token, user });
 
-        // Save email if remember me checked
+        // Save email for "Remember me"
         if (formData.remember) {
           localStorage.setItem("rememberedEmail", formData.email);
         } else {
@@ -56,7 +55,17 @@ export default function LoginPage() {
         }
 
         toast.success(message || "Login successful");
-        setTimeout(() => navigate("/admin"), 1500);
+
+        // Role-based navigation after slight delay
+        setTimeout(() => {
+          if (user.role === "admin") {
+            navigate("/admin");
+          } else if (user.role === "donor") {
+            navigate("/donor");
+          } else {
+            navigate("/");
+          }
+        }, 1000);
       } else {
         toast.error("Invalid login response");
       }
@@ -69,7 +78,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gradient-to-br from-red-50 to-pink-50 flex items-center justify-center p-4">
       <ToastContainer />
       <div className="w-full max-w-md">
-        {/* Logo/Header */}
+        {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
             <div className="bg-red-600 p-3 rounded-full">
@@ -81,7 +90,7 @@ export default function LoginPage() {
           <p className="text-gray-600">Connecting donors, saving lives</p>
         </div>
 
-        {/* Login Card */}
+        {/* Login Form */}
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold">Welcome Back</h2>
@@ -158,10 +167,7 @@ export default function LoginPage() {
           <div className="text-center pt-4 border-t mt-4">
             <p className="text-sm text-gray-600">
               Don&apos;t have an account?{" "}
-              <Link
-                to="/register"
-                className="text-red-600 font-medium hover:underline"
-              >
+              <Link to="/register" className="text-red-600 font-medium hover:underline">
                 Create one now
               </Link>
             </p>
