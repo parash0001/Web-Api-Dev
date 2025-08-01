@@ -5,7 +5,7 @@ export default function ProtectedRoute({ allowedRoles }) {
     const { user, isInitialized } = useAuth();
     const location = useLocation();
 
-    if (!isInitialized) return null; // or <LoadingSpinner />
+    if (!isInitialized) return null; 
 
     if (!user) {
         return <Navigate to="/login" state={{ from: location }} replace />;
