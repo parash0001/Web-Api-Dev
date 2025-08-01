@@ -86,7 +86,7 @@ export default function LoginPage() {
             </div>
             <Heart className="h-6 w-6 text-red-600" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Blood Bridge</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Blood Bank</h1>
           <p className="text-gray-600">Connecting donors, saving lives</p>
         </div>
 
@@ -94,7 +94,7 @@ export default function LoginPage() {
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold">Welcome Back</h2>
-            <p className="text-gray-600">Sign in to your donor account</p>
+            <p className="text-gray-600">Login in to your donor account</p>
           </div>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
