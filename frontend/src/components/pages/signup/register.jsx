@@ -264,7 +264,7 @@ export default function RegisterPage() {
               />
               <label htmlFor="notifications" className="text-sm leading-5">
                 I would like to receive notifications about donation
-                opportunities and health tips
+                opportunities and health tips. 
               </label>
             </div>
 
