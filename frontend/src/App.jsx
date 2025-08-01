@@ -28,8 +28,6 @@ import DonationComponent from "./components/views/admin/admin-donate-blood"
 import BloodRequestComponent from "./components/views/admin/admin-donate-blood"
 import CampComponent from "./components/views/admin/admin-camp-component"
 
-// Donor Layout & Pages
-// import DonorLayout from "./components/layouts/DonorLayout"
 // import DonorDashboard from "./components/views/donor/dashboard"
 // import DonorDonateBlood from "./components/views/donor/donate-blood"
 // import DonorNeedBlood from "./components/views/donor/need-blood"
