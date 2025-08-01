@@ -4,9 +4,8 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
-    const [isInitialized, setIsInitialized] = useState(false); // 🟡 to delay route check
+    const [isInitialized, setIsInitialized] = useState(false); 
 
-    // ✅ Restore user from storage
     useEffect(() => {
         const storage = sessionStorage.getItem("token") ? sessionStorage : localStorage;
 
@@ -20,7 +19,7 @@ export function AuthProvider({ children }) {
             setUser({ token, role, email, name, id: userId });
         }
 
-        setIsInitialized(true); // ✅ Mark complete
+        setIsInitialized(true); 
     }, []);
 
     // ✅ Login and store to session/local based on remember
