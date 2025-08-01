@@ -1,6 +1,6 @@
 import Appointment from '../model/appointment.js';
 
-// CREATE (supports admin or user)
+
 export const createAppointment = async (req, res) => {
     try {
         const {
