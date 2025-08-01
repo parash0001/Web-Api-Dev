@@ -1,7 +1,7 @@
+import axios from "axios";
+import { Droplets, Eye, EyeOff, Heart } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Heart, Droplets, Eye, EyeOff } from "lucide-react";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -65,7 +65,7 @@ export default function RegisterPage() {
             </div>
             <Heart className="h-6 w-6 text-red-600" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">Blood Bridge</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Blood Bank</h1>
           <p className="text-gray-600">Connecting donors, saving lives</p>
         </div>
 
@@ -80,43 +80,111 @@ export default function RegisterPage() {
           <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-medium">First Name</label>
-                <input id="firstName" type="text" required placeholder="John" onChange={handleChange} className="w-full mt-1 h-11 border border-gray-300 rounded px-3" />
+                <label
+                  htmlFor="firstName"
+                  className="block text-sm font-medium"
+                >
+                  First Name
+                </label>
+                <input
+                  id="firstName"
+                  type="text"
+                  required
+                  placeholder="John"
+                  onChange={handleChange}
+                  className="w-full mt-1 h-11 border border-gray-300 rounded px-3"
+                />
               </div>
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium">Last Name</label>
-                <input id="lastName" type="text" required placeholder="Doe" onChange={handleChange} className="w-full mt-1 h-11 border border-gray-300 rounded px-3" />
+                <label htmlFor="lastName" className="block text-sm font-medium">
+                  Last Name
+                </label>
+                <input
+                  id="lastName"
+                  type="text"
+                  required
+                  placeholder="Doe"
+                  onChange={handleChange}
+                  className="w-full mt-1 h-11 border border-gray-300 rounded px-3"
+                />
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium">Email Address</label>
-              <input id="email" type="email" required placeholder="your.email@example.com" onChange={handleChange} className="w-full mt-1 h-11 border border-gray-300 rounded px-3" />
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email Address
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                placeholder="your.email@example.com"
+                onChange={handleChange}
+                className="w-full mt-1 h-11 border border-gray-300 rounded px-3"
+              />
             </div>
 
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium">Phone Number</label>
-              <input id="phone" type="tel" required placeholder="+977 9823000007" onChange={handleChange} className="w-full mt-1 h-11 border border-gray-300 rounded px-3" />
+              <label htmlFor="phone" className="block text-sm font-medium">
+                Phone Number
+              </label>
+              <input
+                id="phone"
+                type="tel"
+                required
+                placeholder="+977 9823000007"
+                onChange={handleChange}
+                className="w-full mt-1 h-11 border border-gray-300 rounded px-3"
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="bloodType" className="block text-sm font-medium">Blood Type</label>
-                <select id="bloodType" required onChange={handleChange} className="w-full mt-1 h-11 border border-gray-300 rounded px-3">
+                <label
+                  htmlFor="bloodType"
+                  className="block text-sm font-medium"
+                >
+                  Blood Type
+                </label>
+                <select
+                  id="bloodType"
+                  required
+                  onChange={handleChange}
+                  className="w-full mt-1 h-11 border border-gray-300 rounded px-3"
+                >
                   <option value="">Select type</option>
-                  <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-                  <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+                  <option>A+</option>
+                  <option>A-</option>
+                  <option>B+</option>
+                  <option>B-</option>
+                  <option>AB+</option>
+                  <option>AB-</option>
+                  <option>O+</option>
+                  <option>O-</option>
                 </select>
               </div>
               <div>
-                <label htmlFor="age" className="block text-sm font-medium">Age</label>
-                <input id="age" type="number" min="18" max="65" required placeholder="25" onChange={handleChange} className="w-full mt-1 h-11 border border-gray-300 rounded px-3" />
+                <label htmlFor="age" className="block text-sm font-medium">
+                  Age
+                </label>
+                <input
+                  id="age"
+                  type="number"
+                  min="18"
+                  max="65"
+                  required
+                  placeholder="25"
+                  onChange={handleChange}
+                  className="w-full mt-1 h-11 border border-gray-300 rounded px-3"
+                />
               </div>
             </div>
 
             {/* Password field with eye icon */}
             <div className="relative">
-              <label htmlFor="password" className="block text-sm font-medium">Password</label>
+              <label htmlFor="password" className="block text-sm font-medium">
+                Password
+              </label>
               <input
                 id="password"
                 type={showPassword ? "text" : "password"}
@@ -130,13 +198,22 @@ export default function RegisterPage() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-9 text-gray-500"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
 
             {/* Confirm Password field with eye icon */}
             <div className="relative">
-              <label htmlFor="confirmPassword" className="block text-sm font-medium">Confirm Password</label>
+              <label
+                htmlFor="confirmPassword"
+                className="block text-sm font-medium"
+              >
+                Confirm Password
+              </label>
               <input
                 id="confirmPassword"
                 type={showConfirmPassword ? "text" : "password"}
@@ -150,7 +227,11 @@ export default function RegisterPage() {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-3 top-9 text-gray-500"
               >
-                {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showConfirmPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
 
@@ -164,14 +245,26 @@ export default function RegisterPage() {
                 className="mt-1 rounded border-gray-300"
               />
               <label htmlFor="terms" className="text-sm leading-5">
-                I agree to the <Link to="/terms" className="text-red-600 hover:underline">Terms of Service</Link> and <Link to="/privacy" className="text-red-600 hover:underline">Privacy Policy</Link>
+                I agree to the{" "}
+                <Link to="/terms" className="text-red-600 hover:underline">
+                  Terms of Service
+                </Link>{" "}
+                and{" "}
+                <Link to="/privacy" className="text-red-600 hover:underline">
+                  Privacy Policy
+                </Link>
               </label>
             </div>
 
             <div className="flex items-start space-x-2">
-              <input type="checkbox" id="notifications" className="mt-1 rounded border-gray-300" />
+              <input
+                type="checkbox"
+                id="notifications"
+                className="mt-1 rounded border-gray-300"
+              />
               <label htmlFor="notifications" className="text-sm leading-5">
-                I would like to receive notifications about donation opportunities and health tips
+                I would like to receive notifications about donation
+                opportunities and health tips
               </label>
             </div>
 
@@ -191,13 +284,21 @@ export default function RegisterPage() {
           <div className="text-center pt-4 border-t mt-4">
             <p className="text-sm text-gray-600">
               Already have an account?{" "}
-              <Link to="/login" className="text-red-600 font-medium hover:underline">Sign in here</Link>
+              <Link
+                to="/login"
+                className="text-red-600 font-medium hover:underline"
+              >
+                Sign in here
+              </Link>
             </p>
           </div>
         </div>
 
         <div className="text-center mt-6 text-xs text-gray-500">
-          <p>Your information is secure and will only be used for donation coordination</p>
+          <p>
+            Your information is secure and will only be used for donation
+            coordination
+          </p>
         </div>
       </div>
     </div>
