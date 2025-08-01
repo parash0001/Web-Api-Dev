@@ -21,7 +21,16 @@ export const createBloodRequest = async (req, res) => {
     }
 };
 
-
+export const getMyRequests = async (req, res) => {
+  try {
+    const requests = await BloodRequest.find({ user: req.user.id }).sort({
+      createdAt: -1,
+    });
+    res.json({ success: true, data: requests });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
 // Read - all requests (admin)
 export const getAllRequests = async (req, res) => {
