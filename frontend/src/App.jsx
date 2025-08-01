@@ -29,11 +29,6 @@ import BloodRequestComponent from "./components/views/admin/admin-donate-blood"
 import CampComponent from "./components/views/admin/admin-camp-component"
 
 
-// import DonorDonateBlood from "./components/views/donor/donate-blood"
-// import DonorNeedBlood from "./components/views/donor/need-blood"
-// import DonorIssues from "./components/views/donor/issues"
-// import DonorFeedback from "./components/views/donor/feedback"
-
 export default function App() {
 	return (
 		<Routes>
