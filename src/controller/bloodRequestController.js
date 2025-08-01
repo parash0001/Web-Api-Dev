@@ -21,7 +21,6 @@ export const createBloodRequest = async (req, res) => {
     }
 };
 
-// Read - get own requests
 export const getMyRequests = async (req, res) => {
     try {
         const requests = await BloodRequest.find({ user: req.user.id }).sort({ createdAt: -1 });

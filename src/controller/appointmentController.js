@@ -106,7 +106,7 @@ export const getAllAppointments = async (req, res) => {
     }
 };
 
-// UPDATE (own)
+
 export const updateAppointment = async (req, res) => {
     try {
         const { id } = req.params;
@@ -126,7 +126,7 @@ export const updateAppointment = async (req, res) => {
     }
 };
 
-// DELETE
+
 export const deleteAppointment = async (req, res) => {
     try {
         const { id } = req.params;
